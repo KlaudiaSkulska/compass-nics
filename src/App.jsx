@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const NICS_LOGO = "data:image/png;base64,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";
 
@@ -1528,15 +1528,520 @@ function Landing({ onStart }) {
   );
 }
 
+// ─── Tour script ──────────────────────────────────────────────────────────────
+const TOUR_STEPS = [
+  {
+    screen:"landing",
+    title:"Welcome to Compass",
+    sub:"Northern Ireland Civil Service",
+    text:"Compass is the AI platform built for every civil servant in Northern Ireland. It works across all nine NICS departments — adapting to your role, your tasks, and your day. Let me show you how it works.",
+  },
+  {
+    screen:"setup-dept",
+    title:"Step 1 — Choose your department",
+    sub:"9 departments supported",
+    text:"Compass configures itself around your department. Every department has its own set of agents, workflows, and tools. For this walkthrough we are selecting the Department for Communities — DfC.",
+  },
+  {
+    screen:"setup-role",
+    title:"Step 2 — Choose your role",
+    sub:"6 role types available",
+    text:"Then select your type of role. Compass builds a personalised experience around it — the right tools, the right agents, the right shortcuts. Here we are selecting Communications Officer.",
+  },
+  {
+    screen:"overview",
+    title:"Your Compass — everything configured for you",
+    sub:"DfC · Communications Officer",
+    text:"Here is everything Compass has ready for this role in DfC. Four AI agents. Meeting tools that generate live summaries. AI Insights tracking time saved. Training tracked against EU AI Act Article 4. And a personal AI Companion on every screen.",
+  },
+  {
+    screen:"dashboard-glance",
+    title:"Today at a Glance",
+    sub:"Personalised to Esther · DfC",
+    text:"This is Esther's personalised dashboard — Communications Officer in DfC. Her urgent tasks are already surfaced: an AQW response due at 17:00 and 1,240 consultation responses to review. Compass knows what matters first.",
+  },
+  {
+    screen:"dashboard-meetings",
+    title:"Meetings — interactive summaries",
+    sub:"Synced from Microsoft Teams",
+    text:"Today's meetings are pulled directly from Teams. Completed meetings show a Generate Summary button — click it and Compass produces an AI summary with actions and decisions extracted automatically.",
+  },
+  {
+    screen:"dashboard-work",
+    title:"Work Items — AI Agents",
+    sub:"Role-specific agent catalogue",
+    text:"Under Work Items, Esther sees every AI agent configured for her role. Each agent has a clear step-by-step flow you can walk through before launching. The AQW Response Agent is live in DfC right now.",
+  },
+  {
+    screen:"dashboard-aqw",
+    title:"AQW Response Agent",
+    sub:"Live in DfC · Used daily",
+    text:"Before writing a single word, the agent checks 1,900 historic Assembly Written Questions for precedent. Consistent position confirmed, draft generated in first-person ministerial tone, governance check passed by Purview.",
+  },
+  {
+    screen:"dashboard-readiness",
+    title:"My Readiness — Insights and Training",
+    sub:"Viva Insights · Viva Learning",
+    text:"Every civil servant can see their AI proficiency score, time saved this week, and training progress — including EU AI Act Article 4 compliance tracked automatically through Viva Insights and Viva Learning.",
+  },
+  {
+    screen:"dashboard-companion",
+    title:"DfC AI Companion",
+    sub:"Always available · Always contextual",
+    text:"The DfC AI Companion is available from every screen. Ask it what to prioritise, how to use an agent, or what the AQW precedent says. It knows the role, the department, and the tools. This is Compass.",
+  },
+];
+
+// ─── Typewriter hook ──────────────────────────────────────────────────────────
+function useTypewriter(text, speed=22) {
+  const [out, setOut] = useState("");
+  const [done, setDone] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    setOut(""); setDone(false);
+    let i = 0;
+    clearInterval(ref.current);
+    ref.current = setInterval(() => {
+      i++;
+      setOut(text.slice(0, i));
+      if (i >= text.length) { setDone(true); clearInterval(ref.current); }
+    }, speed);
+    return () => clearInterval(ref.current);
+  }, [text]);
+  return { out, done };
+}
+
+// ─── Overview screen ──────────────────────────────────────────────────────────
+function Overview({ onContinue, onHome }) {
+  const [activeCard, setActiveCard] = useState(null);
+
+  const AGENTS = [
+    { id:"aqw",    name:"AQW Response Agent",      icon:"📝", color:C.coral,      tag:"Priority",
+      steps:["Receive question","Check 1,900 precedents","Retrieve policy","Generate draft","Governance check","Send for clearance"],
+      saves:"~3.5 hrs per AQW" },
+    { id:"comms",  name:"Communications Author",    icon:"📣", color:C.green,      tag:"Live",
+      steps:["Define audience","Pull guidelines","Generate content","Tone check","Human review","Publish"],
+      saves:"~2 hrs per brief" },
+    { id:"policy", name:"Policy Researcher Agent",  icon:"🔎", color:C.blue,       tag:"Popular",
+      steps:["Define question","Identify sources","Extract evidence","Comparative summary","Briefing note ready"],
+      saves:"~50% research time" },
+    { id:"civic",  name:"Civic Insight Agent",      icon:"📊", color:C.nicsGreen,  tag:"Active",
+      steps:["Upload responses","Ingest & categorise","Extract themes","Human review","Draft report","Publish"],
+      saves:"~2–3 weeks per consultation" },
+  ];
+
+  const FEATURES = [
+    { icon:"📅", label:"Meeting Summaries",     desc:"AI recap of any Teams call — actions, decisions, owners extracted automatically", ms:"Teams" },
+    { icon:"📋", label:"Task Management",        desc:"Synced with Planner and To Do — urgent items surfaced to the top of your day", ms:"Planner" },
+    { icon:"✦",  label:"My AI Insights",         desc:"Proficiency score, time saved, prompts used, meetings summarised — all visible", ms:"Viva Insights" },
+    { icon:"🎓", label:"Training Tracker",        desc:"EU AI Act Article 4, Copilot skills, NICS governance modules — progress tracked", ms:"Viva Learning" },
+    { icon:"🛡️", label:"Governance by Default",  desc:"Purview checks every agent output before it goes to clearance — no extra steps", ms:"Purview" },
+    { icon:"🧭", label:"AI Companion",            desc:"Ask anything — contextual to your role, department, and today's tasks", ms:"M365 Copilot" },
+  ];
+
+  return (
+    <div style={{fontFamily:"'Segoe UI',system-ui,sans-serif",minHeight:"100vh",
+      background:C.pageBg,display:"flex",flexDirection:"column"}}>
+
+      {/* Header */}
+      <div style={{background:"white",borderBottom:`1px solid ${C.border}`,height:"52px",
+        display:"flex",alignItems:"center",padding:"0 18px",gap:"12px",flexShrink:0,
+        boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+        <img src={NICS_LOGO} alt="NICS" style={{height:"26px",objectFit:"contain"}}/>
+        <div style={{width:"1px",height:"22px",background:C.border}}/>
+        <span style={{fontSize:"15px"}}>🧭</span>
+        <span style={{fontSize:"14px",fontWeight:700,color:C.textDark}}>Compass</span>
+        <span style={{fontSize:"8px",background:"#EEF4FF",color:C.blue,padding:"2px 7px",
+          borderRadius:"20px",fontWeight:600,border:`1px solid ${C.blue}22`}}>by Slalom</span>
+        <div style={{flex:1}}/>
+        <div style={{display:"flex",gap:"7px"}}>
+          <span style={{fontSize:"9px",background:C.nicsGreen+"18",color:C.nicsGreen,
+            padding:"3px 10px",borderRadius:"20px",fontWeight:700}}>DfC</span>
+          <span style={{fontSize:"9px",background:"#EEF4FF",color:C.blue,
+            padding:"3px 10px",borderRadius:"20px",fontWeight:700}}>Communications Officer</span>
+        </div>
+        <HomeBtn onClick={onHome}/>
+      </div>
+
+      {/* Content */}
+      <div style={{flex:1,overflowY:"auto",padding:"20px 24px",maxWidth:"960px",
+        margin:"0 auto",width:"100%"}}>
+
+        {/* Intro */}
+        <div style={{textAlign:"center",marginBottom:"24px"}}>
+          <div style={{fontSize:"20px",fontWeight:700,color:C.textDark,marginBottom:"5px"}}>
+            Here is everything Compass has for you
+          </div>
+          <div style={{fontSize:"13px",color:C.midGray}}>
+            Configured for your role · Built on Microsoft 365 · Ready to use today
+          </div>
+        </div>
+
+        {/* Agents */}
+        <div style={{marginBottom:"20px"}}>
+          <div style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"12px"}}>
+            <span style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>🤖 Your AI Agents</span>
+            <span style={{fontSize:"10px",color:C.midGray}}>Click any card to see the step-by-step flow</span>
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:"12px"}}>
+            {AGENTS.map(a=>(
+              <div key={a.id} onClick={()=>setActiveCard(activeCard===a.id?null:a.id)}
+                style={{background:"white",borderRadius:"12px",padding:"16px",
+                border:`1.5px solid ${activeCard===a.id?a.color:C.border}`,
+                cursor:"pointer",transition:"all 0.2s",
+                boxShadow:activeCard===a.id?`0 4px 20px ${a.color}18`:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                <div style={{display:"flex",justifyContent:"space-between",
+                  alignItems:"flex-start",marginBottom:"10px"}}>
+                  <div style={{display:"flex",alignItems:"center",gap:"9px"}}>
+                    <div style={{width:"36px",height:"36px",background:a.color+"15",
+                      borderRadius:"10px",display:"flex",alignItems:"center",
+                      justifyContent:"center",fontSize:"18px"}}>{a.icon}</div>
+                    <div>
+                      <div style={{fontSize:"12px",fontWeight:700,color:C.blue,lineHeight:1.2}}>{a.name}</div>
+                      <div style={{fontSize:"9px",color:C.midGray,marginTop:"2px"}}>Saves {a.saves}</div>
+                    </div>
+                  </div>
+                  <span style={{fontSize:"8px",background:a.color+"15",color:a.color,
+                    padding:"2px 8px",borderRadius:"20px",fontWeight:700,flexShrink:0}}>{a.tag}</span>
+                </div>
+
+                {activeCard!==a.id?(
+                  /* Collapsed — dot flow */
+                  <div style={{display:"flex",alignItems:"center",gap:"4px",flexWrap:"wrap"}}>
+                    {a.steps.map((s,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:"3px"}}>
+                        <div style={{background:a.color+"15",border:`1px solid ${a.color}30`,
+                          borderRadius:"20px",padding:"2px 8px",fontSize:"8px",
+                          color:a.color,fontWeight:600,whiteSpace:"nowrap"}}>{s}</div>
+                        {i<a.steps.length-1&&(
+                          <span style={{fontSize:"9px",color:C.midGray}}>→</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ):(
+                  /* Expanded — step list */
+                  <div>
+                    {a.steps.map((s,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:"10px",
+                        padding:"7px 0",borderBottom:i<a.steps.length-1?`1px solid ${C.border}`:"none"}}>
+                        <div style={{width:"22px",height:"22px",borderRadius:"50%",flexShrink:0,
+                          background:a.color+"18",border:`1px solid ${a.color}40`,
+                          display:"flex",alignItems:"center",justifyContent:"center",
+                          fontSize:"9px",fontWeight:700,color:a.color}}>{i+1}</div>
+                        <span style={{fontSize:"11px",color:C.textDark,fontWeight:i===0?600:400}}>{s}</span>
+                        {i===a.steps.length-1&&(
+                          <span style={{marginLeft:"auto",fontSize:"8px",
+                            background:C.green+"15",color:C.green,
+                            padding:"2px 8px",borderRadius:"20px",fontWeight:600,flexShrink:0}}>✓ Complete</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features */}
+        <div style={{marginBottom:"20px"}}>
+          <div style={{fontSize:"13px",fontWeight:700,color:C.textDark,marginBottom:"12px"}}>
+            ✦ Everything else included
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"10px"}}>
+            {FEATURES.map(f=>(
+              <div key={f.label} style={{background:"white",borderRadius:"10px",
+                padding:"13px 14px",border:`1px solid ${C.border}`,
+                boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                <div style={{display:"flex",alignItems:"center",gap:"7px",marginBottom:"6px"}}>
+                  <span style={{fontSize:"16px"}}>{f.icon}</span>
+                  <span style={{fontSize:"11px",fontWeight:700,color:C.textDark}}>{f.label}</span>
+                </div>
+                <div style={{fontSize:"10px",color:C.midGray,lineHeight:1.5,marginBottom:"7px"}}>{f.desc}</div>
+                <span style={{fontSize:"8px",background:"#EEF4FF",color:C.blue,
+                  padding:"2px 8px",borderRadius:"10px",fontWeight:600}}>● {f.ms}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{background:`linear-gradient(135deg,${C.dark},${C.blue})`,
+          borderRadius:"14px",padding:"20px 24px",
+          display:"flex",alignItems:"center",justifyContent:"space-between",
+          boxShadow:`0 8px 32px ${C.blue}30`}}>
+          <div>
+            <div style={{fontSize:"16px",fontWeight:700,color:"white",marginBottom:"4px"}}>
+              Ready to start
+            </div>
+            <div style={{fontSize:"11px",color:"rgba(255,255,255,0.6)"}}>
+              Everything configured · No setup needed · Built on Microsoft 365
+            </div>
+          </div>
+          <button onClick={onContinue}
+            style={{background:"white",color:C.blue,border:"none",borderRadius:"10px",
+            padding:"12px 28px",fontSize:"13px",fontWeight:700,cursor:"pointer",
+            boxShadow:"0 4px 16px rgba(0,0,0,0.15)",flexShrink:0}}>
+            Open my dashboard →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Tour panel ───────────────────────────────────────────────────────────────
+function TourPanel({ step, playing, onPlay, onPrev, onNext, onReset, onDismiss, speed, setSpeed }) {
+  const tour = TOUR_STEPS[step];
+  const { out, done } = useTypewriter(tour.text, 22);
+  const progress = ((step + 1) / TOUR_STEPS.length) * 100;
+
+  return (
+    <div style={{
+      position:"fixed", bottom:0, left:0, right:0,
+      background:"white", borderTop:`1px solid ${C.border}`,
+      boxShadow:"0 -8px 32px rgba(0,0,0,0.1)",
+      zIndex:400,
+      fontFamily:"'Segoe UI',system-ui,sans-serif",
+    }}>
+      {/* Progress bar */}
+      <div style={{height:"3px",background:"#E8EDF5"}}>
+        <div style={{height:"3px",
+          background:`linear-gradient(to right,${C.blue},${C.cyan})`,
+          width:`${progress}%`,transition:"width 0.5s ease"}}/>
+      </div>
+
+      <div style={{padding:"12px 20px 10px",display:"flex",gap:"14px",alignItems:"flex-start"}}>
+        {/* Compass icon */}
+        <div style={{flexShrink:0,display:"flex",flexDirection:"column",
+          alignItems:"center",gap:"3px"}}>
+          <div style={{width:"40px",height:"40px",borderRadius:"12px",
+            background:`linear-gradient(135deg,${C.blue},${C.dark})`,
+            display:"flex",alignItems:"center",justifyContent:"center",fontSize:"18px",
+            boxShadow:`0 3px 12px ${C.blue}40`,
+            animation:playing?"tour-spin 10s linear infinite":"none"}}>🧭</div>
+          <div style={{fontSize:"8px",color:C.midGray,fontWeight:600,textAlign:"center"}}>
+            {step+1}/{TOUR_STEPS.length}
+          </div>
+        </div>
+
+        {/* Text */}
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"4px",flexWrap:"wrap"}}>
+            <span style={{fontSize:"12px",fontWeight:700,color:C.textDark}}>{tour.title}</span>
+            <span style={{fontSize:"8px",background:C.pageBg,color:C.midGray,
+              padding:"2px 8px",borderRadius:"10px",border:`1px solid ${C.border}`}}>{tour.sub}</span>
+          </div>
+          <div style={{fontSize:"12px",color:"#4A5568",lineHeight:1.65,minHeight:"38px"}}>
+            {out}
+            {!done&&<span style={{borderRight:`2px solid ${C.blue}`,marginLeft:"1px",
+              animation:"tour-blink 0.7s ease infinite"}}>&nbsp;</span>}
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div style={{flexShrink:0,display:"flex",flexDirection:"column",
+          gap:"7px",alignItems:"flex-end"}}>
+          <div style={{display:"flex",gap:"4px",alignItems:"center"}}>
+            <button onClick={onReset}
+              title="Restart"
+              style={{background:C.pageBg,color:C.midGray,border:"none",
+                borderRadius:"6px",padding:"5px 9px",fontSize:"12px",cursor:"pointer"}}>↺</button>
+            <button onClick={onPrev} disabled={step===0}
+              style={{background:C.pageBg,color:step===0?"#C0C9D8":C.textDark,
+                border:"none",borderRadius:"6px",padding:"5px 11px",
+                fontSize:"12px",cursor:step===0?"not-allowed":"pointer"}}>←</button>
+            <button onClick={onPlay}
+              style={{background:playing?"#FFF1F2":C.blue,
+                color:playing?"#FF4D5F":"white",
+                border:playing?"1px solid #FECDD3":"none",
+                borderRadius:"8px",padding:"7px 18px",
+                fontSize:"12px",fontWeight:700,cursor:"pointer",minWidth:"82px",
+                boxShadow:playing?"none":`0 2px 8px ${C.blue}40`}}>
+              {playing?"⏸ Pause":step>=TOUR_STEPS.length-1?"↺ Replay":"▶ Play"}
+            </button>
+            <button onClick={onNext} disabled={step>=TOUR_STEPS.length-1}
+              style={{background:C.pageBg,
+                color:step>=TOUR_STEPS.length-1?"#C0C9D8":C.textDark,
+                border:"none",borderRadius:"6px",padding:"5px 11px",
+                fontSize:"12px",cursor:step>=TOUR_STEPS.length-1?"not-allowed":"pointer"}}>→</button>
+            <button onClick={onDismiss}
+              title="Close tour"
+              style={{background:"none",border:"none",color:C.midGray,
+                fontSize:"14px",cursor:"pointer",padding:"4px 6px",marginLeft:"2px"}}>✕</button>
+          </div>
+          {/* Speed + pace */}
+          <div style={{display:"flex",gap:"4px",alignItems:"center"}}>
+            <span style={{fontSize:"9px",color:C.midGray}}>Pace:</span>
+            {[[3,"Fast"],[5,"Med"],[8,"Slow"]].map(([v,l])=>(
+              <button key={v} onClick={()=>setSpeed(v)}
+                style={{background:speed===v?"#EEF4FF":"transparent",
+                  color:speed===v?C.blue:C.midGray,
+                  border:`1px solid ${speed===v?C.blue+"40":C.border}`,
+                  borderRadius:"5px",padding:"2px 8px",
+                  fontSize:"9px",fontWeight:speed===v?700:400,cursor:"pointer"}}>{l}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Step track */}
+      <div style={{padding:"0 20px 10px",display:"flex",gap:"4px"}}>
+        {TOUR_STEPS.map((_,i)=>(
+          <div key={i}
+            style={{flex:1,height:"4px",borderRadius:"2px",
+              background:i<step?C.blue:i===step?C.blue:C.border,
+              opacity:i<=step?1:0.3,transition:"all 0.3s",
+              boxShadow:i===step?`0 0 6px ${C.blue}50`:"none"}}/>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 export default function App() {
-  const [view, setView]     = useState("landing");
-  const [dept, setDept]     = useState(null);
-  const [roleId, setRoleId] = useState(null);
+  const [view, setView]       = useState("landing");
+  const [dept, setDept]       = useState(null);
+  const [roleId, setRoleId]   = useState(null);
+  // Tour state
+  const [tourStep, setTourStep]   = useState(0);
+  const [tourOn, setTourOn]       = useState(true);
+  const [tourPlaying, setTourPlaying] = useState(false);
+  const [tourSpeed, setTourSpeed] = useState(5);
+  const tourTimer = useRef(null);
 
-  function onDeptRole(d,r){ setDept(d); setRoleId(r); setView("dashboard"); }
+  // Map tour step → which screen/action to show
+  const TOUR_NAV = [
+    { view:"landing" },
+    { view:"setup" },
+    { view:"setup" },
+    { view:"overview" },
+    { view:"dashboard", tab:"glance" },
+    { view:"dashboard", tab:"glance" },
+    { view:"dashboard", tab:"work" },
+    { view:"dashboard", tab:"work" },
+    { view:"dashboard", tab:"readiness" },
+    { view:"dashboard", tab:"glance", highlight:"companion" },
+  ];
 
-  if(view==="landing")   return <Landing onStart={()=>setView("setup")}/>;
-  if(view==="setup")     return <DeptRoleSelect onComplete={onDeptRole} onHome={()=>setView("landing")}/>;
-  return <Dashboard roleId={roleId} deptId={dept} onHome={()=>setView("landing")} onBack={()=>setView("setup")}/>;
+  // Advance tour — also navigate the real app
+  function goTourStep(i) {
+    if (i < 0 || i >= TOUR_STEPS.length) return;
+    setTourStep(i);
+    const nav = TOUR_NAV[i];
+    if (!nav) return;
+    if (nav.view === "landing") setView("landing");
+    else if (nav.view === "setup") setView("setup");
+    else if (nav.view === "overview") setView("overview");
+    else if (nav.view === "dashboard") {
+      if (view !== "dashboard") {
+        // Auto-select DfC + comms if not already set
+        if (!dept) setDept("dfc");
+        if (!roleId) setRoleId("comms");
+        setView("dashboard");
+      }
+    }
+  }
+
+  // Auto-advance timer
+  useEffect(() => {
+    clearInterval(tourTimer.current);
+    if (tourPlaying && tourOn) {
+      tourTimer.current = setInterval(() => {
+        setTourStep(s => {
+          const next = s + 1;
+          if (next >= TOUR_STEPS.length) { setTourPlaying(false); return s; }
+          goTourStep(next);
+          return next;
+        });
+      }, tourSpeed * 1000);
+    }
+    return () => clearInterval(tourTimer.current);
+  }, [tourPlaying, tourSpeed, tourOn, view, dept, roleId]);
+
+  function onDeptRole(d, r) {
+    setDept(d); setRoleId(r);
+    setView("overview");
+    // Advance tour to overview step if tour is active
+    if (tourOn && tourStep <= 3) goTourStep(3);
+  }
+
+  function onOverviewContinue() {
+    setView("dashboard");
+    if (tourOn) goTourStep(4);
+  }
+
+  const tourPanel = tourOn ? (
+    <TourPanel
+      step={tourStep}
+      playing={tourPlaying}
+      speed={tourSpeed}
+      setSpeed={setTourSpeed}
+      onPlay={() => {
+        if (tourStep >= TOUR_STEPS.length - 1) goTourStep(0);
+        setTourPlaying(p => !p);
+      }}
+      onPrev={() => { setTourPlaying(false); goTourStep(tourStep - 1); }}
+      onNext={() => { setTourPlaying(false); goTourStep(tourStep + 1); }}
+      onReset={() => { setTourPlaying(false); goTourStep(0); }}
+      onDismiss={() => { setTourPlaying(false); setTourOn(false); }}
+    />
+  ) : (
+    <div style={{position:"fixed",bottom:"16px",right:"16px",zIndex:400}}>
+      <button onClick={()=>setTourOn(true)}
+        style={{background:C.blue,color:"white",border:"none",borderRadius:"10px",
+        padding:"8px 16px",fontSize:"11px",fontWeight:700,cursor:"pointer",
+        boxShadow:`0 4px 16px ${C.blue}50`,display:"flex",alignItems:"center",gap:"6px"}}>
+        🧭 Show tour
+      </button>
+    </div>
+  );
+
+  if (view==="landing") return (
+    <>
+      <style>{`
+        @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+      `}</style>
+      <Landing onStart={()=>{ setView("setup"); if(tourOn) goTourStep(1); }}/>
+      {tourPanel}
+    </>
+  );
+
+  if (view==="setup") return (
+    <>
+      <style>{`
+        @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+      `}</style>
+      <DeptRoleSelect onComplete={onDeptRole} onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}/>
+      {tourPanel}
+    </>
+  );
+
+  if (view==="overview") return (
+    <>
+      <style>{`
+        @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+      `}</style>
+      <Overview onContinue={onOverviewContinue} onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}/>
+      {tourPanel}
+    </>
+  );
+
+  return (
+    <>
+      <style>{`
+        @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
+        @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+      `}</style>
+      <Dashboard roleId={roleId||"comms"} deptId={dept||"dfc"}
+        onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}
+        onBack={()=>{ setView("setup"); if(tourOn) goTourStep(1); }}/>
+      {tourPanel}
+    </>
+  );
 }
