@@ -95,9 +95,9 @@ const ROLE_CONTENT = {
       saved:"4.2 hrs saved this week · 50% less time on research" },
   },
   comms: {
-    name:"Esther", avatar:"EM", color:C.nicsGreen,
-    greeting:"Good morning, Esther",
-    tagline:"Communications Officer",
+    name:"Gareth", avatar:"GM", color:C.nicsGreen,
+    greeting:"Good morning, Gareth",
+    tagline:"Communications Officer · DfC",
     dashTabs:[
       { id:"today",   label:"Today's Work",   icon:"📋" },
       { id:"meetings",label:"Meetings",        icon:"🤝" },
@@ -350,7 +350,7 @@ function HomeBtn({ onClick }) {
 function AQWFlow({ onClose }) {
   const [step, setStep] = useState(0);
   const steps = ["Enter question","Check precedent","Draft response","Governance check"];
-  const draft = `Dear [Member's name],\n\nThank you for your Assembly Written Question (Ref: Q1891) regarding Housing Allocation Policy.\n\nI can confirm that the current Housing Selection Scheme prioritises applicants based on assessed housing need, in accordance with the Housing (Northern Ireland) Order 1988 and subsequent amendments. Allocation decisions are made by the Northern Ireland Housing Executive using a points-based system that accounts for overcrowding, unfitness, and medical need.\n\nFor Q4 2025, 94% of allocations were made to applicants in the highest need bands. The Department continues to monitor outcomes and is committed to ensuring the scheme operates fairly and transparently.\n\n[Minister's name]`;
+  const draft = `This issue is an operational matter for the Northern Ireland Housing Executive. I have sought the requested information from the Chief Executive, who has advised me as follows:\n\n"(i) The Housing Executive reviews forecast weather conditions. A SWEP will be considered on each occasion on which a weather warning is issued by the Met Office.\n\n(ii) There is no statutory obligation for the Housing Executive to implement a SWEP. The Housing Executive implements the SWEP to ensure availability of accommodation to individuals sleeping rough when there is an increased risk of death due to the weather e.g. temperatures fall near or below freezing.\n\n(iii)(a) Social media channels provide details of relevant contact numbers for the Housing Executive, Welcome Organisation and First Housing to ensure any rough sleepers are directed to funded services so that the appropriate advice, assistance, and support can be provided.\n\n(iii)(b) The Housing Executive notifies funded partners with outreach services such as the Welcome Organisation in Belfast and First Housing and Support Services in Londonderry. Outside of the two main cities, where a rough sleeper is identified, local staff will take all necessary steps to make contact and make an offer of temporary accommodation for the duration of SWEP."`;
 
   return (
     <div style={{position:"fixed",inset:0,background:"rgba(15,27,61,0.6)",display:"flex",
@@ -393,7 +393,7 @@ function AQWFlow({ onClose }) {
                 <div style={{fontFamily:"monospace",fontSize:"12px",background:"white",padding:"7px 12px",borderRadius:"6px",border:`1px solid ${C.border}`,marginBottom:"12px"}}>Q1891/22-27</div>
                 <div style={{fontSize:"10px",color:C.midGray,fontWeight:700,marginBottom:"6px",textTransform:"uppercase",letterSpacing:"0.6px"}}>Question text</div>
                 <div style={{fontFamily:"serif",fontSize:"12px",color:C.textDark,background:"white",padding:"10px 12px",borderRadius:"6px",border:`1px solid ${C.border}`,lineHeight:1.65}}>
-                  "To ask the Minister for Communities to outline the criteria used to determine housing allocation priority under the current Housing Selection Scheme, and to provide data on the percentage of allocations made to applicants in the highest need bands during Q4 2025."
+                  "To ask the Minister for Communities (i) how the Housing Executive determines when to activate a Severe Weather Emergency Protocol (SWEP); (ii) what the statutory basis is for implementing a SWEP; (iii) how rough sleepers are (a) informed of and (b) directed to available SWEP accommodation."
                 </div>
               </div>
               <button onClick={()=>setStep(1)} style={{marginTop:"16px",background:C.blue,color:"white",border:"none",borderRadius:"8px",padding:"10px 24px",fontSize:"12px",fontWeight:600,cursor:"pointer"}}>Check precedent →</button>
@@ -432,14 +432,14 @@ function AQWFlow({ onClose }) {
                 <div style={{display:"flex",justifyContent:"space-between",marginBottom:"10px",alignItems:"center"}}>
                   <span style={{fontSize:"9px",fontWeight:700,color:C.midGray,textTransform:"uppercase",letterSpacing:"0.8px"}}>Generated Draft</span>
                   <div style={{display:"flex",gap:"5px",alignItems:"center"}}>
-                    <span style={{fontSize:"10px",color:C.green,fontWeight:600}}>✓ 187 words</span>
+                    <span style={{fontSize:"10px",color:C.green,fontWeight:600}}>✓ 198 words</span>
                     <MsBadge product="M365 Copilot" color={C.msBlue}/>
                   </div>
                 </div>
                 <div style={{fontSize:"11px",color:C.textDark,lineHeight:1.75,whiteSpace:"pre-line",fontFamily:"Georgia,serif"}}>{draft}</div>
               </div>
               <div style={{background:"#EFF6FF",borderRadius:"8px",padding:"9px 13px",marginBottom:"12px",fontSize:"10px",color:C.blue}}>
-                ℹ Consistent with Q1204/22-27 (March 2024). Updated Q4 2025 data incorporated. First-person tone applied.
+                ℹ Consistent with Q1204/22-27 (March 2024). NIHE operational format applied. First-person ministerial tone. SWEP criteria and partner outreach confirmed.
               </div>
               <div style={{display:"flex",gap:"8px"}}>
                 <button onClick={()=>setStep(3)} style={{background:C.green,color:"white",border:"none",borderRadius:"7px",padding:"9px 18px",fontSize:"12px",fontWeight:600,cursor:"pointer"}}>Run governance check →</button>
@@ -458,7 +458,7 @@ function AQWFlow({ onClose }) {
                   <MsBadge product="Purview" color={C.msBlue}/>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"5px"}}>
-                  {["No sensitive data detected","Consistent with Q1204/22-27","Word limit: 187/200 ✓","First-person tone verified","Approved sources used","Audit trail → Purview"].map((c,i)=>(
+                  {["No sensitive data detected","Consistent with Q1204/22-27","Word limit: 198/200 ✓","First-person tone verified","NIHE operational format applied","Audit trail → Purview"].map((c,i)=>(
                     <div key={i} style={{fontSize:"10px",color:"#065F46",display:"flex",gap:"4px"}}>✓ {c}</div>
                   ))}
                 </div>
@@ -471,7 +471,7 @@ function AQWFlow({ onClose }) {
                 <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,borderRadius:"7px",padding:"9px 12px",fontSize:"12px",cursor:"pointer"}}>Save to SharePoint</button>
                 <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,borderRadius:"7px",padding:"9px 12px",fontSize:"12px",cursor:"pointer"}}>Download .docx</button>
               </div>
-              <div style={{marginTop:"8px",fontSize:"9px",color:C.midGray}}>⏱ 3 min 42 sec · ~3.5 hrs saved · Logged to Viva Insights · Clearance workflow initiated</div>
+              <div style={{marginTop:"8px",fontSize:"9px",color:C.midGray}}>⏱ 3 min 42 sec · ~3.5 hrs saved · NIHE format applied · Logged to Viva Insights · Clearance workflow initiated</div>
             </div>
           )}
         </div>
@@ -487,7 +487,7 @@ function AdvisorChat({ rc, deptName, onClose }) {
     { role:"agent", text:`Good morning, ${rc.name}. I'm your ${title}. I can help you find the right tool, understand what's on your plate, or guide you through your day. What do you need?` }
   ]);
   const [input, setInput] = useState("");
-  const chips = ["What should I prioritise today?","Help me with my AQW response","How do I analyse consultation responses?","What's my Copilot IQ?"];
+  const chips = ["What's in my email today?","Help me research housing policy","Draft an AQW response","What should I prioritise?"];
 
   function send(q) {
     q = q || input; if(!q.trim()) return; setInput("");
@@ -495,16 +495,19 @@ function AdvisorChat({ rc, deptName, onClose }) {
     setTimeout(()=>{
       const ql = q.toLowerCase();
       let r = "";
-      if(ql.includes("priorit")||ql.includes("today"))
-        r=`Your two most urgent items today are: **${rc.tasks[0].title}** (due ${rc.tasks[0].time}) and **${rc.tasks[1].title}** (due ${rc.tasks[1].time}). I'd start with the first — use the **${rc.tools[0].name}** to get moving quickly.`;
-      else if(ql.includes("aqw")||ql.includes("assembly"))
-        r="The **AQW Response Agent** first checks your archive for similar questions — many are repeated, and surfacing precedent saves significant time and ensures consistency. If no match is found, it drafts a new response from approved SharePoint content, within the 200-word limit and first-person tone. Click 'Check if this AQW has been asked before' in your Top Actions.";
-      else if(ql.includes("consult"))
-        r="The **Civic Insight Agent** handles consultation analysis end-to-end. It ingests responses, identifies themes and outliers, and generates a balanced, audit-ready report. Human judgement remains central throughout — the agent drafts, you decide. Particularly effective for volumes over 100 responses.";
-      else if(ql.includes("copilot iq")||ql.includes("score"))
+      if(ql.includes("email")||ql.includes("inbox")) {
+        r="I've scanned your inbox via Microsoft Graph. Here's what needs attention:\n\n**📧 From: NIHE Policy Team** (08:42)\nSubject: *Housing allocation Q — urgent response needed*\n\"We've received a query from a constituent about SWEP activation criteria. Can you draft a ministerial response for Q1891 by 17:00?\"\n\n**📧 From: Private Office** (09:15)\nSubject: *AQW triage — 3 new questions assigned*\nThree new Assembly Written Questions assigned to your team — two on housing, one on community planning.\n\nWould you like me to **open the AQW Response Agent** for Q1891, or **summarise all three new questions** first?";
+      } else if(ql.includes("research")||ql.includes("housing policy")||ql.includes("jurisdiction")) {
+        r="I can run the **Policy Researcher Agent** for you. Here's how a typical housing policy research journey works:\n\n**Step 1 — You define the question**\ne.g. *\"How have Scotland and Wales approached SWEP activation criteria for rough sleepers?\"\n\n**Step 2 — Agent identifies sources**\nSearches Scottish Government, Senedd Cymru, and NI Assembly research papers. Finds 14 relevant publications.\n\n**Step 3 — Evidence extracted**\nSummarises key findings, flags comparable frameworks, retains source links for traceability.\n\n**Step 4 — Comparative summary generated**\nA structured briefing note comparing each jurisdiction — ready to insert into your ministerial submission.\n\nEstimated time: **~4 minutes**. Want me to launch the researcher now with the SWEP housing brief as the starting question?";
+      } else if(ql.includes("aqw")||ql.includes("assembly")||ql.includes("draft")) {
+        r="The **AQW Response Agent** first checks 1,900+ historic questions for precedent — Q1891 on SWEP activation has two close matches (Q1204 from March 2024 and Q0891 from November 2023). The agent will surface both, confirm the ministerial position, then draft a response in NIHE operational format within the 200-word limit. Click **Launch AQW Agent** in Work Items to get started — it takes about 4 minutes end to end.";
+      } else if(ql.includes("priorit")||ql.includes("today")) {
+        r=`Your two most urgent items today are: **${rc.tasks[0]?.title}** (due ${rc.tasks[0]?.time}) and **${rc.tasks[1]?.title}** (due ${rc.tasks[1]?.time}). I'd start with the AQW — there's a housing email in your inbox that connects directly to Q1891. Use the **AQW Response Agent** and it will be drafted and governance-checked in under 5 minutes.`;
+      } else if(ql.includes("copilot iq")||ql.includes("score")) {
         r=`Your Copilot IQ is **${rc.copilotIq.score}/100** — ${rc.copilotIq.level}. ${rc.copilotIq.trend}. ${rc.copilotIq.badge}. ${rc.copilotIq.saved}`;
-      else
-        r=`Good question. Based on your role, I'd start with the **${rc.tools[0].name}** — it's configured for your most common tasks today. What specifically do you need to get done right now?`;
+      } else {
+        r=`Good question. Based on your role and what's in your inbox today, I'd start with the **AQW Response Agent** — there's a housing query from NIHE that connects to Q1891 due at 17:00. Want me to open it, or is there something else I can help with first?`;
+      }
       setMsgs(p=>[...p,{role:"agent",text:r}]);
     },450);
   }
@@ -867,7 +870,7 @@ function WorkItems({ rc, onLaunchAQW }) {
 }
 
 // ─── Dashboard ────────────────────────────────────────────────────────────────
-function Dashboard({ roleId, deptId, onHome, onBack }) {
+function Dashboard({ roleId, deptId, onHome, onBack, activeTab, setActiveTab }) {
   const rc = ROLE_CONTENT[roleId] || ROLE_CONTENT.policy;
   const dept = DEPARTMENTS.find(d=>d.id===deptId);
   const TABS = [
@@ -875,7 +878,6 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
     { id:"work",     label:"Work Items",         icon:"🛠️" },
     { id:"readiness",label:"My Readiness",       icon:"📈" },
   ];
-  const [activeTab, setActiveTab] = useState("glance");
   const [tasks, setTasks] = useState(rc.tasks);
   const [showAQW, setShowAQW] = useState(false);
   const [showAdvisor, setShowAdvisor] = useState(false);
@@ -1010,6 +1012,19 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
                   </div>
                 ))}
                 <div style={{marginTop:"8px",fontSize:"9px",color:C.midGray,textAlign:"center"}}>Synced via Microsoft Planner + To Do</div>
+                <div onClick={()=>setActiveTab("glance")}
+                  style={{marginTop:"10px",background:"#EEF4FF",borderRadius:"8px",
+                  padding:"8px 12px",display:"flex",alignItems:"center",gap:"8px",
+                  cursor:"pointer",border:`1px solid ${C.blue}20`,transition:"all 0.15s"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background="#E0ECFF";}}
+                  onMouseLeave={e=>{e.currentTarget.style.background="#EEF4FF";}}>
+                  <span style={{fontSize:"14px"}}>📅</span>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:"10px",fontWeight:600,color:C.blue}}>View Today's Meetings</div>
+                    <div style={{fontSize:"9px",color:C.midGray}}>Click to expand meetings panel →</div>
+                  </div>
+                  <span style={{fontSize:"12px",color:C.blue,fontWeight:700}}>→</span>
+                </div>
               </div>
 
               {/* Meetings — interactive */}
@@ -1048,28 +1063,90 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
                       <div style={{padding:"12px 14px",borderTop:`1px solid ${C.border}`,background:"white"}}>
                         {!meetingSummary[i]?(
                           <div>
-                            <div style={{fontSize:"10px",color:C.midGray,marginBottom:"10px",lineHeight:1.4}}>
-                              {m.done?"This meeting has ended. Generate a summary to capture actions and decisions.":"Meeting upcoming. Prepare a briefing or review previous notes."}
-                            </div>
-                            <div style={{display:"flex",gap:"6px",flexWrap:"wrap"}}>
-                              {m.done&&(
-                                <button onClick={()=>setMeetingSummary(p=>({...p,[i]:MEETING_SUMMARIES[i]||MEETING_SUMMARIES[0]}))}
-                                  style={{background:rc.color,color:"white",border:"none",borderRadius:"6px",
-                                  padding:"6px 12px",fontSize:"10px",fontWeight:600,cursor:"pointer"}}>
-                                  🎙️ Generate summary
-                                </button>
-                              )}
-                              {!m.done&&(
-                                <button style={{background:C.blue,color:"white",border:"none",borderRadius:"6px",
-                                  padding:"6px 12px",fontSize:"10px",fontWeight:600,cursor:"pointer"}}>
-                                  📊 Prepare briefing
-                                </button>
-                              )}
-                              <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,
-                                borderRadius:"6px",padding:"6px 12px",fontSize:"10px",cursor:"pointer"}}>
-                                📁 View notes
-                              </button>
-                            </div>
+                            {m.done?(
+                              <div>
+                                <div style={{fontSize:"10px",color:C.midGray,marginBottom:"10px",lineHeight:1.4,fontStyle:"italic"}}>
+                                  This meeting has ended. Generate an AI summary to capture actions and decisions, or review the notes and agenda from before.
+                                </div>
+                                <div style={{display:"flex",gap:"6px",flexWrap:"wrap"}}>
+                                  <button onClick={()=>setMeetingSummary(p=>({...p,[i]:MEETING_SUMMARIES[i]||MEETING_SUMMARIES[0]}))}
+                                    style={{background:rc.color,color:"white",border:"none",borderRadius:"6px",
+                                    padding:"6px 12px",fontSize:"10px",fontWeight:600,cursor:"pointer",display:"flex",alignItems:"center",gap:"4px"}}>
+                                    🎙️ Generate summary
+                                  </button>
+                                  <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,
+                                    borderRadius:"6px",padding:"6px 12px",fontSize:"10px",cursor:"pointer",display:"flex",alignItems:"center",gap:"4px"}}>
+                                    📋 View notes
+                                  </button>
+                                </div>
+                                {/* Previous notes preview */}
+                                <div style={{marginTop:"10px",background:C.offWhite,borderRadius:"8px",
+                                  padding:"10px 12px",border:`1px solid ${C.border}`}}>
+                                  <div style={{fontSize:"9px",fontWeight:700,color:C.midGray,textTransform:"uppercase",
+                                    letterSpacing:"0.6px",marginBottom:"6px"}}>📋 Notes from last session</div>
+                                  {[
+                                    "Housing allocation Q — Q1891 assigned to Gareth, due 17:00 today",
+                                    "NIHE confirmed SWEP criteria update pending — check with Chief Executive office",
+                                    "Climate consultation analysis to begin week of 16th — Civic Insight Agent confirmed",
+                                  ].map((n,j)=>(
+                                    <div key={j} style={{fontSize:"9px",color:C.textDark,padding:"3px 0",
+                                      borderBottom:j<2?`1px solid ${C.border}`:"none",
+                                      display:"flex",gap:"5px"}}>
+                                      <span style={{color:C.blue,flexShrink:0}}>·</span>{n}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ):(
+                              <div>
+                                <div style={{fontSize:"10px",color:C.midGray,marginBottom:"10px",lineHeight:1.4,fontStyle:"italic"}}>
+                                  Meeting coming up. Prepare a briefing from previous notes, or review the agenda to get ready.
+                                </div>
+                                {/* Agenda preview */}
+                                <div style={{background:"#EEF4FF",borderRadius:"8px",padding:"10px 12px",
+                                  border:`1px solid ${C.blue}20`,marginBottom:"10px"}}>
+                                  <div style={{fontSize:"9px",fontWeight:700,color:C.blue,textTransform:"uppercase",
+                                    letterSpacing:"0.6px",marginBottom:"6px"}}>📅 Agenda · {m.title}</div>
+                                  {(i===1?[
+                                    "1. Review outstanding AQW responses — Q1891, Q1892, Q1897",
+                                    "2. Private Office briefing — Minister priorities this week",
+                                    "3. Clearance timeline — housing allocation submission",
+                                    "4. AOB",
+                                  ]:i===2?[
+                                    "1. Climate consultation update — 1,240 responses overview",
+                                    "2. Civic Insight Agent results — theme extraction ready",
+                                    "3. Draft report review — first pass",
+                                    "4. Publication timeline and comms plan",
+                                  ]:[
+                                    "1. Team updates and task review",
+                                    "2. Priorities for the week ahead",
+                                    "3. AOB",
+                                  ]).map((item,j)=>(
+                                    <div key={j} style={{fontSize:"9px",color:C.textDark,padding:"3px 0",
+                                      borderBottom:j<2?`1px solid ${C.border}40`:"none"}}>
+                                      {item}
+                                    </div>
+                                  ))}
+                                </div>
+                                <div style={{display:"flex",gap:"6px",flexWrap:"wrap"}}>
+                                  <button style={{background:C.blue,color:"white",border:"none",borderRadius:"6px",
+                                    padding:"6px 12px",fontSize:"10px",fontWeight:600,cursor:"pointer",
+                                    display:"flex",alignItems:"center",gap:"4px"}}>
+                                    📊 Prepare for meeting
+                                  </button>
+                                  <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,
+                                    borderRadius:"6px",padding:"6px 12px",fontSize:"10px",cursor:"pointer",
+                                    display:"flex",alignItems:"center",gap:"4px"}}>
+                                    📋 View notes
+                                  </button>
+                                  <button style={{background:"white",color:C.textDark,border:`1px solid ${C.border}`,
+                                    borderRadius:"6px",padding:"6px 12px",fontSize:"10px",cursor:"pointer",
+                                    display:"flex",alignItems:"center",gap:"4px"}}>
+                                    🔗 Join Teams call
+                                  </button>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         ):(
                           <div>
@@ -1116,8 +1193,112 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
           {activeTab==="readiness"&&(
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"14px"}}>
 
-              {/* Left: AI Insights (was Copilot IQ) */}
+              {/* LEFT: My Training + Skills */}
               <div style={{display:"flex",flexDirection:"column",gap:"12px"}}>
+
+                {/* My Training */}
+                <div style={{background:"white",borderRadius:"12px",border:`1px solid ${C.border}`,
+                  padding:"16px",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"12px"}}>
+                    <div style={{display:"flex",alignItems:"center",gap:"6px"}}>
+                      <span style={{fontSize:"14px"}}>🎓</span>
+                      <span style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>My Training</span>
+                    </div>
+                    <MsBadge product="Viva Learning" color="#8B5CF6"/>
+                  </div>
+                  {[
+                    {title:"AI Literacy — EU AI Act Article 4",progress:72,tag:"Required",tagColor:C.coral,due:"Due Fri",icon:"📋"},
+                    {title:"Copilot Skills Builder — Policy workflows",progress:45,tag:"Popular",tagColor:C.blue,due:"Due next week",icon:"🤖"},
+                    {title:"Governance Essentials — NICS AI framework",progress:0,tag:"New",tagColor:C.purple,due:"No deadline",icon:"🛡️"},
+                    {title:"Responsible AI in the Civil Service",progress:100,tag:"Done",tagColor:C.green,due:"Completed",icon:"✅"},
+                  ].map((t,i)=>(
+                    <div key={i} style={{padding:"9px 0",borderBottom:`1px solid ${C.border}`,
+                      cursor:"pointer"}}
+                      onMouseEnter={e=>e.currentTarget.style.background="#FAFBFF"}
+                      onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"5px"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:"6px",flex:1,paddingRight:"8px"}}>
+                          <span style={{fontSize:"12px",flexShrink:0}}>{t.icon}</span>
+                          <span style={{fontSize:"11px",fontWeight:600,color:t.progress===100?C.midGray:C.textDark,
+                            textDecoration:t.progress===100?"line-through":"none",lineHeight:1.35}}>{t.title}</span>
+                        </div>
+                        <span style={{fontSize:"8px",background:t.tagColor+"15",color:t.tagColor,
+                          padding:"2px 6px",borderRadius:"20px",fontWeight:700,flexShrink:0}}>{t.tag}</span>
+                      </div>
+                      <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
+                        <div style={{flex:1,height:"4px",background:C.border,borderRadius:"2px"}}>
+                          <div style={{height:"4px",background:t.progress===100?C.green:rc.color,
+                            borderRadius:"2px",width:`${t.progress}%`,transition:"width 0.4s"}}/>
+                        </div>
+                        <span style={{fontSize:"9px",color:C.midGray,flexShrink:0}}>{t.progress}%</span>
+                        <span style={{fontSize:"9px",color:t.due.includes("Due")?C.amber:C.midGray,
+                          fontWeight:t.due.includes("Due")?600:400,flexShrink:0}}>{t.due}</span>
+                        {t.progress<100&&<span style={{fontSize:"9px",color:C.blue,fontWeight:600,flexShrink:0}}>Resume →</span>}
+                      </div>
+                    </div>
+                  ))}
+                  <button style={{marginTop:"10px",width:"100%",background:C.offWhite,border:`1px solid ${C.border}`,
+                    borderRadius:"7px",padding:"8px",fontSize:"10px",color:C.blue,fontWeight:600,cursor:"pointer"}}>
+                    Browse all training in Microsoft Teams →
+                  </button>
+                </div>
+
+                {/* Skill Progress */}
+                <div style={{background:"white",borderRadius:"12px",border:`1px solid ${C.border}`,
+                  padding:"16px",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"12px"}}>
+                    <div style={{fontSize:"12px",fontWeight:700,color:C.textDark}}>📊 Skill Progress</div>
+                    <span style={{fontSize:"9px",color:C.midGray}}>Based on Viva Insights activity</span>
+                  </div>
+                  {[
+                    {skill:"Prompting",score:88,color:C.blue,icon:"💬"},
+                    {skill:"Agent workflows",score:64,color:rc.color,icon:"🤖"},
+                    {skill:"Data literacy",score:72,color:C.purple,icon:"📊"},
+                    {skill:"EU AI Act",score:rc.copilotIq.score,color:C.green,icon:"🛡️"},
+                  ].map((s,i)=>(
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"10px"}}>
+                      <span style={{fontSize:"12px",flexShrink:0}}>{s.icon}</span>
+                      <span style={{fontSize:"10px",color:C.midGray,width:"96px",flexShrink:0}}>{s.skill}</span>
+                      <div style={{flex:1,height:"6px",background:C.border,borderRadius:"3px"}}>
+                        <div style={{height:"6px",background:s.color,borderRadius:"3px",width:`${s.score}%`}}/>
+                      </div>
+                      <span style={{fontSize:"10px",fontWeight:700,color:s.color,width:"28px",textAlign:"right"}}>{s.score}</span>
+                    </div>
+                  ))}
+
+                  {/* Upcoming learning events */}
+                  <div style={{marginTop:"12px",paddingTop:"12px",borderTop:`1px solid ${C.border}`}}>
+                    <div style={{fontSize:"11px",fontWeight:700,color:C.textDark,marginBottom:"8px"}}>
+                      🗓️ Upcoming Learning Events
+                    </div>
+                    {[
+                      {type:"🎥",title:"AI Fundamentals for Civil Servants",date:"Wed 14:00",ms:"Teams Webinar",color:C.blue},
+                      {type:"📚",title:"Responsible AI — live Q&A session",date:"Thu 11:00",ms:"Teams Live",color:C.purple},
+                      {type:"🧪",title:"Copilot Studio hands-on workshop",date:"Fri 09:30",ms:"In person",color:rc.color},
+                    ].map((e,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:"8px",
+                        padding:"7px 8px",borderRadius:"8px",marginBottom:"4px",
+                        background:C.offWhite,border:`1px solid ${C.border}`,cursor:"pointer",
+                        transition:"all 0.15s"}}
+                        onMouseEnter={el=>{el.currentTarget.style.borderColor=e.color;el.currentTarget.style.background=e.color+"08";}}
+                        onMouseLeave={el=>{el.currentTarget.style.borderColor=C.border;el.currentTarget.style.background=C.offWhite;}}>
+                        <span style={{fontSize:"14px",flexShrink:0}}>{e.type}</span>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{fontSize:"10px",fontWeight:600,color:C.textDark,
+                            overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{e.title}</div>
+                          <div style={{fontSize:"8px",color:C.midGray}}>{e.date} · {e.ms}</div>
+                        </div>
+                        <span style={{fontSize:"9px",color:e.color,fontWeight:700,flexShrink:0}}>Join →</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: AI Insights + Quick Actions */}
+              <div style={{display:"flex",flexDirection:"column",gap:"12px"}}>
+
+                {/* AI Insights */}
                 <div style={{background:"white",borderRadius:"12px",border:`1px solid ${C.border}`,
                   padding:"16px",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
                   <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"12px"}}>
@@ -1125,7 +1306,7 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
                     <span style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>My AI Insights</span>
                     <MsBadge product="Viva Insights" color="#8B5CF6"/>
                   </div>
-                  {/* Score */}
+                  {/* Score ring */}
                   <div style={{display:"flex",alignItems:"center",gap:"14px",marginBottom:"12px",
                     padding:"12px",background:C.offWhite,borderRadius:"10px",border:`1px solid ${C.border}`}}>
                     <div style={{position:"relative",width:"56px",height:"56px",flexShrink:0}}>
@@ -1140,10 +1321,10 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
                     <div>
                       <div style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>{rc.copilotIq.level}</div>
                       <div style={{fontSize:"10px",color:C.midGray,marginBottom:"4px"}}>{rc.copilotIq.trend}</div>
-                      <span style={{fontSize:"9px",background:C.green+"18",color:C.green,padding:"2px 8px",borderRadius:"20px",fontWeight:600}}>{rc.copilotIq.badge}</span>
+                      <span style={{fontSize:"9px",background:C.green+"18",color:C.green,
+                        padding:"2px 8px",borderRadius:"20px",fontWeight:600}}>{rc.copilotIq.badge}</span>
                     </div>
                   </div>
-                  {/* Insight metrics */}
                   {[
                     {label:"Time saved this week",value:"4.2 hrs",icon:"⏱️",color:C.blue},
                     {label:"Tasks completed with AI",value:"7 of 12",icon:"✅",color:C.green},
@@ -1162,64 +1343,39 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
                   <div style={{marginTop:"10px",background:"#ECFDF5",borderRadius:"7px",padding:"8px 10px",
                     fontSize:"10px",color:"#065F46",lineHeight:1.4}}>{rc.copilotIq.saved}</div>
                 </div>
-              </div>
 
-              {/* Right: My Training */}
-              <div style={{display:"flex",flexDirection:"column",gap:"12px"}}>
+                {/* Quick Actions — each one clickable to its actual flow */}
                 <div style={{background:"white",borderRadius:"12px",border:`1px solid ${C.border}`,
                   padding:"16px",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"12px"}}>
-                    <div style={{display:"flex",alignItems:"center",gap:"6px"}}>
-                      <span style={{fontSize:"14px"}}>🎓</span>
-                      <span style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>My Training</span>
-                    </div>
-                    <MsBadge product="Viva Learning" color="#8B5CF6"/>
+                  <div style={{fontSize:"12px",fontWeight:700,color:C.textDark,marginBottom:"12px"}}>
+                    ⚡ Quick Actions
                   </div>
                   {[
-                    {title:"AI Literacy — EU AI Act Article 4",progress:72,status:"In progress",tag:"Required",tagColor:C.coral,due:"Due Fri"},
-                    {title:"Copilot Skills Builder — Policy workflows",progress:45,status:"In progress",tag:"Popular",tagColor:C.blue,due:"Due next week"},
-                    {title:"Governance Essentials — NICS AI framework",progress:0,status:"Not started",tag:"New",tagColor:C.purple,due:"No deadline"},
-                    {title:"Responsible AI in the Civil Service",progress:100,status:"Complete",tag:"Done",tagColor:C.green,due:"Completed"},
-                  ].map((t,i)=>(
-                    <div key={i} style={{padding:"10px 0",borderBottom:`1px solid ${C.border}`}}>
-                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"5px"}}>
-                        <span style={{fontSize:"11px",fontWeight:600,color:t.progress===100?C.midGray:C.textDark,
-                          textDecoration:t.progress===100?"line-through":"none",lineHeight:1.35,flex:1,paddingRight:"8px"}}>{t.title}</span>
-                        <span style={{fontSize:"8px",background:t.tagColor+"15",color:t.tagColor,
-                          padding:"2px 6px",borderRadius:"20px",fontWeight:700,flexShrink:0}}>{t.tag}</span>
+                    {label:"Draft an AQW response",         icon:"📝", color:C.coral,   tag:"Priority",  action:()=>setShowAQW(true),         sub:"AQW Response Agent · ~4 min"},
+                    {label:"Analyse consultation responses", icon:"📊", color:C.nicsGreen,tag:"Active",  action:()=>setActiveTab("work"),      sub:"Civic Insight Agent · Batch mode"},
+                    {label:"Research other jurisdictions",   icon:"🔎", color:C.blue,    tag:"Popular",  action:()=>setActiveTab("work"),      sub:"Policy Researcher Agent · ~4 min"},
+                    {label:"Prepare a business case",        icon:"£",  color:C.purple,  tag:"New",      action:()=>setActiveTab("work"),      sub:"Business Case Support · ~8 hrs saved"},
+                    {label:"Chat with AI Companion",         icon:"🧭", color:C.dark,    tag:"Always on",action:()=>setShowAdvisor(true),      sub:"Ask anything · M365 Copilot"},
+                  ].map((a,i)=>(
+                    <div key={i} onClick={a.action}
+                      style={{display:"flex",alignItems:"center",gap:"10px",
+                      padding:"9px 10px",borderRadius:"9px",cursor:"pointer",
+                      border:`1px solid ${C.border}`,marginBottom:"6px",
+                      background:C.offWhite,transition:"all 0.15s"}}
+                      onMouseEnter={e=>{e.currentTarget.style.borderColor=a.color;e.currentTarget.style.background=a.color+"08";e.currentTarget.style.boxShadow=`0 2px 8px ${a.color}15`;}}
+                      onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.background=C.offWhite;e.currentTarget.style.boxShadow="none";}}>
+                      <div style={{width:"32px",height:"32px",background:a.color+"15",borderRadius:"8px",
+                        display:"flex",alignItems:"center",justifyContent:"center",
+                        fontSize:"16px",flexShrink:0}}>{a.icon}</div>
+                      <div style={{flex:1,minWidth:0}}>
+                        <div style={{fontSize:"11px",fontWeight:600,color:C.textDark,marginBottom:"2px"}}>{a.label}</div>
+                        <div style={{fontSize:"9px",color:C.midGray}}>{a.sub}</div>
                       </div>
-                      <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
-                        <div style={{flex:1,height:"4px",background:C.border,borderRadius:"2px"}}>
-                          <div style={{height:"4px",background:t.progress===100?C.green:rc.color,
-                            borderRadius:"2px",width:`${t.progress}%`,transition:"width 0.4s"}}/>
-                        </div>
-                        <span style={{fontSize:"9px",color:C.midGray,flexShrink:0}}>{t.progress}%</span>
-                        <span style={{fontSize:"9px",color:t.due.includes("Due")?C.amber:C.midGray,fontWeight:t.due.includes("Due")?600:400,flexShrink:0}}>{t.due}</span>
+                      <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:"3px",flexShrink:0}}>
+                        <span style={{fontSize:"8px",background:a.color+"15",color:a.color,
+                          padding:"1px 6px",borderRadius:"10px",fontWeight:700}}>{a.tag}</span>
+                        <span style={{fontSize:"10px",color:a.color,fontWeight:700}}>→</span>
                       </div>
-                    </div>
-                  ))}
-                  <button style={{marginTop:"10px",width:"100%",background:C.offWhite,border:`1px solid ${C.border}`,
-                    borderRadius:"7px",padding:"8px",fontSize:"10px",color:C.blue,fontWeight:600,cursor:"pointer"}}>
-                    Browse all training →
-                  </button>
-                </div>
-
-                {/* Skill progress */}
-                <div style={{background:"white",borderRadius:"12px",border:`1px solid ${C.border}`,
-                  padding:"16px",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
-                  <div style={{fontSize:"12px",fontWeight:700,color:C.textDark,marginBottom:"10px"}}>Skill Progress</div>
-                  {[
-                    {skill:"Prompting",score:88,color:C.blue},
-                    {skill:"Agent workflows",score:64,color:rc.color},
-                    {skill:"Data literacy",score:72,color:C.purple},
-                    {skill:"EU AI Act",score:rc.copilotIq.score,color:C.green},
-                  ].map((s,i)=>(
-                    <div key={i} style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"8px"}}>
-                      <span style={{fontSize:"10px",color:C.midGray,width:"100px",flexShrink:0}}>{s.skill}</span>
-                      <div style={{flex:1,height:"6px",background:C.border,borderRadius:"3px"}}>
-                        <div style={{height:"6px",background:s.color,borderRadius:"3px",width:`${s.score}%`}}/>
-                      </div>
-                      <span style={{fontSize:"10px",fontWeight:700,color:s.color,width:"28px",textAlign:"right"}}>{s.score}</span>
                     </div>
                   ))}
                 </div>
@@ -1257,20 +1413,30 @@ function Dashboard({ roleId, deptId, onHome, onBack }) {
             <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`}}>
               <div style={{fontSize:"9px",fontWeight:700,color:C.midGray,textTransform:"uppercase",letterSpacing:"0.6px",marginBottom:"6px"}}>🤖 Launch an agent</div>
               {[
-                {label:"AQW Response Agent",    id:"aqw",  icon:"📝", color:C.coral},
-                {label:"Civic Insight Agent",   id:"civic",icon:"📊", color:C.nicsGreen},
-                {label:"Policy Researcher",     id:"res",  icon:"🔎", color:C.blue},
-                {label:"Business Case Support", id:"biz",  icon:"£",  color:C.purple},
+                {label:"AQW Response Agent",    id:"aqw",      icon:"📝", color:C.coral,     sub:"~4 min · Priority"},
+                {label:"Civic Insight Agent",   id:"civic",    icon:"📊", color:C.nicsGreen, sub:"Consultation analysis"},
+                {label:"Policy Researcher",     id:"research", icon:"🔎", color:C.blue,      sub:"Cross-jurisdiction research"},
+                {label:"Business Case Support", id:"biz",      icon:"£",  color:C.purple,    sub:"Saves ~8 hrs per case"},
               ].map((a,i)=>(
                 <div key={i}
-                  onClick={()=>{ if(a.id==="aqw") setShowAQW(true); else setActiveTab("work"); }}
-                  style={{display:"flex",alignItems:"center",gap:"7px",padding:"7px 8px",
-                  borderRadius:"7px",cursor:"pointer",marginBottom:"3px",transition:"all 0.12s"}}
-                  onMouseEnter={e=>{e.currentTarget.style.background=a.color+"10";}}
-                  onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>
-                  <span style={{fontSize:"13px"}}>{a.icon}</span>
-                  <span style={{fontSize:"10px",color:C.textDark,fontWeight:500}}>{a.label}</span>
-                  <span style={{marginLeft:"auto",fontSize:"10px",color:a.color,fontWeight:700}}>→</span>
+                  onClick={()=>{
+                    if(a.id==="aqw") { setShowAQW(true); }
+                    else { setActiveTab("work"); setShowTopActions(false); }
+                  }}
+                  style={{padding:"7px 8px",borderRadius:"7px",cursor:"pointer",
+                  marginBottom:"4px",border:`1px solid ${C.border}`,
+                  background:C.offWhite,transition:"all 0.12s"}}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor=a.color;e.currentTarget.style.background=a.color+"10";}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.background=C.offWhite;}}>
+                  <div style={{display:"flex",alignItems:"center",gap:"7px"}}>
+                    <span style={{fontSize:"13px"}}>{a.icon}</span>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:"10px",color:C.textDark,fontWeight:600,
+                        overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.label}</div>
+                      <div style={{fontSize:"8px",color:C.midGray}}>{a.sub}</div>
+                    </div>
+                    <span style={{fontSize:"10px",color:a.color,fontWeight:700}}>→</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1350,83 +1516,159 @@ function DeptRoleSelect({ onComplete, onHome }) {
       </div>
 
       <div style={{maxWidth:"860px",margin:"0 auto",padding:"36px 24px"}}>
-        <div style={{textAlign:"center",marginBottom:"36px"}}>
+        <div style={{textAlign:"center",marginBottom:"32px"}}>
           <div style={{fontSize:"24px",fontWeight:700,color:C.textDark,marginBottom:"6px"}}>Welcome to Compass</div>
           <div style={{fontSize:"14px",color:C.midGray}}>Your AI Companion for the Northern Ireland Civil Service</div>
         </div>
 
-        {/* Steps */}
-        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:"8px",marginBottom:"32px"}}>
-          {["Select your department","Select your role type","Your experience"].map((s,i)=>(
+        {/* Step indicator */}
+        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:"8px",marginBottom:"36px"}}>
+          {[
+            {label:"Select your department", done:!!dept,   active:!dept},
+            {label:"Select your role",        done:!!role,   active:!!dept&&!role},
+            {label:"Your experience",         done:canGo,    active:false},
+          ].map((s,i)=>(
             <div key={i} style={{display:"flex",alignItems:"center",gap:"8px"}}>
-              <div style={{width:"22px",height:"22px",borderRadius:"50%",
-                background:(i===0&&dept)||(i===1&&role)||(i===2&&canGo)?C.blue:i===0?C.blue:C.border,
-                color:(i===0&&dept)||(i===1&&role)||(i===2&&canGo)?"white":C.midGray,
-                display:"flex",alignItems:"center",justifyContent:"center",fontSize:"10px",fontWeight:700}}>
-                {(i===0&&dept)||(i===1&&role)?<span style={{fontSize:"9px"}}>✓</span>:i+1}
+              <div style={{width:"24px",height:"24px",borderRadius:"50%",
+                background:s.done?C.blue:s.active?C.blue:C.border,
+                display:"flex",alignItems:"center",justifyContent:"center",
+                fontSize:"10px",fontWeight:700,
+                color:s.done||s.active?"white":C.midGray,
+                transition:"all 0.3s"}}>
+                {s.done?<span style={{fontSize:"9px"}}>✓</span>:i+1}
               </div>
-              <span style={{fontSize:"11px",fontWeight:600,color:((i===0&&dept)||(i===1&&role))?C.blue:C.midGray}}>{s}</span>
-              {i<2&&<div style={{width:"28px",height:"1px",background:C.border}}/>}
+              <span style={{fontSize:"11px",fontWeight:600,
+                color:s.done||s.active?C.blue:C.midGray,transition:"color 0.3s"}}>{s.label}</span>
+              {i<2&&<div style={{width:"32px",height:"2px",borderRadius:"1px",
+                background:s.done?C.blue:C.border,transition:"background 0.3s"}}/>}
             </div>
           ))}
         </div>
 
-        {/* Dept grid */}
-        <div style={{marginBottom:"28px"}}>
-          <div style={{fontSize:"11px",fontWeight:700,color:C.midGray,letterSpacing:"0.8px",textTransform:"uppercase",marginBottom:"10px"}}>Department</div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"8px"}}>
-            {DEPARTMENTS.map(d=>(
-              <div key={d.id} onClick={()=>setDept(d.id)}
-                style={{border:`2px solid ${dept===d.id?d.color:C.border}`,borderRadius:"10px",
-                padding:"11px 13px",cursor:"pointer",background:dept===d.id?d.color+"08":"white",transition:"all 0.15s"}}
-                onMouseEnter={e=>{if(dept!==d.id){e.currentTarget.style.borderColor=d.color+"60";}}}
-                onMouseLeave={e=>{if(dept!==d.id){e.currentTarget.style.borderColor=C.border;}}}>
-                <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"2px"}}>
-                  <div style={{width:"7px",height:"7px",borderRadius:"50%",background:dept===d.id?d.color:C.border,flexShrink:0}}/>
-                  <span style={{fontSize:"11px",fontWeight:700,color:dept===d.id?d.color:C.textDark}}>{d.short}</span>
-                </div>
-                <div style={{fontSize:"9px",color:C.midGray,lineHeight:1.35}}>{d.name}</div>
-              </div>
-            ))}
+        {/* Step 1 — Department */}
+        <div style={{marginBottom:"24px"}}>
+          <div style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"12px"}}>
+            <div style={{width:"22px",height:"22px",borderRadius:"50%",
+              background:dept?C.blue:C.blue,
+              display:"flex",alignItems:"center",justifyContent:"center",
+              fontSize:"10px",fontWeight:700,color:"white"}}>
+              {dept?"✓":"1"}
+            </div>
+            <div style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>Choose your department</div>
+            {dept&&(
+              <button onClick={()=>{setDept(null);setRole(null);}}
+                style={{marginLeft:"auto",background:"none",border:"none",fontSize:"11px",
+                color:C.midGray,cursor:"pointer",textDecoration:"underline"}}>Change</button>
+            )}
           </div>
-          {deptObj&&(
-            <div style={{marginTop:"8px",background:deptObj.color+"0C",border:`1px solid ${deptObj.color}28`,
-              borderRadius:"8px",padding:"9px 13px",fontSize:"11px",color:C.textDark,lineHeight:1.4}}>
-              <strong style={{color:deptObj.color}}>{deptObj.short}:</strong> {deptObj.desc}
+
+          {!dept?(
+            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"8px"}}>
+              {DEPARTMENTS.map(d=>(
+                <div key={d.id} onClick={()=>setDept(d.id)}
+                  style={{border:`2px solid ${C.border}`,borderRadius:"10px",
+                  padding:"12px 13px",cursor:"pointer",background:"white",transition:"all 0.15s"}}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor=d.color;e.currentTarget.style.background=d.color+"06";}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.background="white";}}>
+                  <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"3px"}}>
+                    <div style={{width:"8px",height:"8px",borderRadius:"50%",background:d.color,flexShrink:0}}/>
+                    <span style={{fontSize:"12px",fontWeight:700,color:C.textDark}}>{d.short}</span>
+                  </div>
+                  <div style={{fontSize:"9px",color:C.midGray,lineHeight:1.35}}>{d.name}</div>
+                </div>
+              ))}
+            </div>
+          ):(
+            /* Selected dept — compact confirmation strip */
+            <div style={{background:deptObj.color+"08",border:`2px solid ${deptObj.color}`,
+              borderRadius:"10px",padding:"12px 16px",display:"flex",alignItems:"center",gap:"12px"}}>
+              <div style={{width:"10px",height:"10px",borderRadius:"50%",background:deptObj.color,flexShrink:0}}/>
+              <div>
+                <div style={{fontSize:"13px",fontWeight:700,color:deptObj.color}}>{deptObj.short} — {deptObj.name}</div>
+                <div style={{fontSize:"10px",color:C.midGray,marginTop:"2px"}}>{deptObj.desc}</div>
+              </div>
+              <span style={{marginLeft:"auto",fontSize:"14px"}}>✓</span>
             </div>
           )}
         </div>
 
-        {/* Role types */}
-        <div style={{marginBottom:"28px"}}>
-          <div style={{fontSize:"11px",fontWeight:700,color:C.midGray,letterSpacing:"0.8px",textTransform:"uppercase",marginBottom:"10px"}}>Type of Role</div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"8px"}}>
-            {ROLE_TYPES.map(r=>(
-              <div key={r.id} onClick={()=>setRole(r.id)}
-                style={{border:`2px solid ${role===r.id?C.blue:C.border}`,borderRadius:"10px",
-                padding:"12px 13px",cursor:"pointer",background:role===r.id?"#EEF4FF":"white",transition:"all 0.15s"}}
-                onMouseEnter={e=>{if(role!==r.id)e.currentTarget.style.borderColor=C.blue+"50";}}
-                onMouseLeave={e=>{if(role!==r.id)e.currentTarget.style.borderColor=C.border;}}>
-                <div style={{fontSize:"18px",marginBottom:"5px"}}>{r.icon}</div>
-                <div style={{fontSize:"11px",fontWeight:700,color:role===r.id?C.blue:C.textDark,marginBottom:"3px"}}>{r.label}</div>
-                <div style={{fontSize:"9px",color:C.midGray,lineHeight:1.35}}>{r.desc}</div>
+        {/* Step 2 — Role (only appears after dept selected) */}
+        {dept&&(
+          <div style={{marginBottom:"28px",animation:"slide-down 0.25s ease"}}>
+            <div style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"12px"}}>
+              <div style={{width:"22px",height:"22px",borderRadius:"50%",
+                background:role?C.blue:C.blue,
+                display:"flex",alignItems:"center",justifyContent:"center",
+                fontSize:"10px",fontWeight:700,color:"white"}}>
+                {role?"✓":"2"}
               </div>
-            ))}
-          </div>
-        </div>
+              <div style={{fontSize:"13px",fontWeight:700,color:C.textDark}}>Choose your role type</div>
+              {role&&(
+                <button onClick={()=>setRole(null)}
+                  style={{marginLeft:"auto",background:"none",border:"none",fontSize:"11px",
+                  color:C.midGray,cursor:"pointer",textDecoration:"underline"}}>Change</button>
+              )}
+            </div>
 
-        <div style={{textAlign:"center"}}>
-          <button onClick={()=>canGo&&onComplete(dept,role)}
-            style={{background:canGo?C.blue:"#D1D5DB",color:"white",border:"none",
-            borderRadius:"10px",padding:"13px 36px",fontSize:"14px",fontWeight:700,
-            cursor:canGo?"pointer":"not-allowed",transition:"all 0.2s",
-            boxShadow:canGo?`0 0 24px ${C.blue}40`:"none"}}>
-            Configure my Compass experience →
-          </button>
-          <div style={{marginTop:"9px",fontSize:"10px",color:C.midGray}}>
-            {canGo?`${DEPARTMENTS.find(d=>d.id===dept)?.short} · ${ROLE_TYPES.find(r=>r.id===role)?.label}`:"Select a department and role type to continue"}
+            {!role?(
+              <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"8px"}}>
+                {ROLE_TYPES.map(r=>(
+                  <div key={r.id} onClick={()=>setRole(r.id)}
+                    style={{border:`2px solid ${C.border}`,borderRadius:"10px",
+                    padding:"12px 13px",cursor:"pointer",background:"white",transition:"all 0.15s"}}
+                    onMouseEnter={e=>{e.currentTarget.style.borderColor=C.blue;e.currentTarget.style.background="#EEF4FF";}}
+                    onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.background="white";}}>
+                    <div style={{fontSize:"20px",marginBottom:"5px"}}>{r.icon}</div>
+                    <div style={{fontSize:"11px",fontWeight:700,color:C.textDark,marginBottom:"3px"}}>{r.label}</div>
+                    <div style={{fontSize:"9px",color:C.midGray,lineHeight:1.35}}>{r.desc}</div>
+                  </div>
+                ))}
+              </div>
+            ):(
+              /* Selected role — compact confirmation strip */
+              <div style={{background:"#EEF4FF",border:`2px solid ${C.blue}`,
+                borderRadius:"10px",padding:"12px 16px",display:"flex",alignItems:"center",gap:"12px"}}>
+                <span style={{fontSize:"22px"}}>{ROLE_TYPES.find(r=>r.id===role)?.icon}</span>
+                <div>
+                  <div style={{fontSize:"13px",fontWeight:700,color:C.blue}}>
+                    {ROLE_TYPES.find(r=>r.id===role)?.label}
+                  </div>
+                  <div style={{fontSize:"10px",color:C.midGray,marginTop:"2px"}}>
+                    {ROLE_TYPES.find(r=>r.id===role)?.desc}
+                  </div>
+                </div>
+                <span style={{marginLeft:"auto",fontSize:"14px"}}>✓</span>
+              </div>
+            )}
           </div>
-        </div>
+        )}
+
+        {/* CTA — only when both selected */}
+        {canGo&&(
+          <div style={{textAlign:"center",animation:"slide-down 0.25s ease"}}>
+            <button onClick={()=>onComplete(dept,role)}
+              style={{background:C.blue,color:"white",border:"none",
+              borderRadius:"10px",padding:"14px 40px",fontSize:"14px",fontWeight:700,
+              cursor:"pointer",transition:"all 0.2s",
+              boxShadow:`0 0 28px ${C.blue}50`}}>
+              Configure my Compass experience →
+            </button>
+            <div style={{marginTop:"9px",fontSize:"10px",color:C.midGray}}>
+              {deptObj?.short} · {ROLE_TYPES.find(r=>r.id===role)?.label} · Takes you straight to your dashboard
+            </div>
+          </div>
+        )}
+
+        {!dept&&(
+          <div style={{textAlign:"center",marginTop:"8px",fontSize:"11px",color:C.midGray}}>
+            Start by selecting your department above ↑
+          </div>
+        )}
+        {dept&&!role&&(
+          <div style={{textAlign:"center",marginTop:"8px",fontSize:"11px",color:C.midGray}}>
+            Now select your role type ↑
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1534,61 +1776,73 @@ const TOUR_STEPS = [
     screen:"landing",
     title:"Welcome to Compass",
     sub:"Northern Ireland Civil Service",
-    text:"Compass is the AI platform built for every civil servant in Northern Ireland. It works across all nine NICS departments — adapting to your role, your tasks, and your day. Let me show you how it works.",
+    text:"Compass is the AI platform built for every civil servant in Northern Ireland — across all nine NICS departments. It adapts to your role, surfaces what matters most, and connects you to AI agents built for civil service work. Press Play to walk through it, or click any step to jump directly.",
   },
   {
     screen:"setup-dept",
-    title:"Step 1 — Choose your department",
-    sub:"9 departments supported",
-    text:"Compass configures itself around your department. Every department has its own set of agents, workflows, and tools. For this walkthrough we are selecting the Department for Communities — DfC.",
+    title:"Choose your department",
+    sub:"Step 1 of 2 · Setup",
+    text:"Compass starts by asking which department you work in. Select your department and it configures the platform for that context — the right agents, the right tools, the right content. We're selecting DfC — Department for Communities.",
   },
   {
     screen:"setup-role",
-    title:"Step 2 — Choose your role",
-    sub:"6 role types available",
-    text:"Then select your type of role. Compass builds a personalised experience around it — the right tools, the right agents, the right shortcuts. Here we are selecting Communications Officer.",
+    title:"Choose your role type",
+    sub:"Step 2 of 2 · Setup",
+    text:"Now select your role. Six types available — Policy Officer, Communications, Consultation, IT, Finance, and HR. Each one loads a different set of agents and a personalised dashboard. We're selecting Policy Officer, which will load Gareth's view.",
   },
   {
     screen:"overview",
-    title:"Your Compass — everything configured for you",
-    sub:"DfC · Communications Officer",
-    text:"Here is everything Compass has ready for this role in DfC. Four AI agents. Meeting tools that generate live summaries. AI Insights tracking time saved. Training tracked against EU AI Act Article 4. And a personal AI Companion on every screen.",
+    title:"Everything Compass has for you",
+    sub:"DfC · Policy Officer · Before you enter",
+    text:"Before going to the dashboard, Compass shows everything configured for this role. Click any agent card to expand its step-by-step flow. Below the agents are six platform features — all running on Microsoft 365 tools you already have. When you're ready, click Open my dashboard.",
   },
   {
     screen:"dashboard-glance",
-    title:"Today at a Glance",
-    sub:"Personalised to Esther · DfC",
-    text:"This is Esther's personalised dashboard — Communications Officer in DfC. Her urgent tasks are already surfaced: an AQW response due at 17:00 and 1,240 consultation responses to review. Compass knows what matters first.",
+    title:"Today at a Glance — Tasks",
+    sub:"Tab 1 · Left panel",
+    text:"Your tasks are synced from Planner and To Do — urgent items at the top. Click the circle on any task to mark it done. At the bottom of the tasks panel, click the blue 'View Today's Meetings' prompt to jump to the meetings panel on the right — or click any meeting row there directly to expand it.",
   },
   {
-    screen:"dashboard-meetings",
-    title:"Meetings — interactive summaries",
-    sub:"Synced from Microsoft Teams",
-    text:"Today's meetings are pulled directly from Teams. Completed meetings show a Generate Summary button — click it and Compass produces an AI summary with actions and decisions extracted automatically.",
+    screen:"dashboard-glance",
+    title:"Today at a Glance — Meetings",
+    sub:"Tab 1 · Right panel",
+    text:"The right panel shows today's Teams calendar. Click any meeting row to expand it. Completed meetings show Generate Summary — click it and Compass extracts actions and decisions automatically. Upcoming meetings show the agenda, Prepare for Meeting, View Notes, and Join Teams Call buttons.",
+  },
+  {
+    screen:"dashboard-glance",
+    title:"Quick Actions sidebar",
+    sub:"Right-hand panel · Always visible",
+    text:"The Quick Actions sidebar on the right gives Gareth one-click access to everything. Urgent tasks are shown at the top in red — click one to jump to it. Below that, four agent shortcuts: clicking AQW launches the agent directly, the others navigate to Work Items. The AI Companion card at the bottom opens a chat.",
   },
   {
     screen:"dashboard-work",
-    title:"Work Items — AI Agents",
-    sub:"Role-specific agent catalogue",
-    text:"Under Work Items, Esther sees every AI agent configured for her role. Each agent has a clear step-by-step flow you can walk through before launching. The AQW Response Agent is live in DfC right now.",
+    title:"Work Items — AI Agent catalogue",
+    sub:"Tab 2 · Filter by category",
+    text:"Work Items shows every AI agent configured for this role. Use the category pills at the top to filter — Parliamentary, Consultation, Research, Finance, Communications, IT. Click See Flow on any card to walk through its step-by-step process before launching.",
   },
   {
     screen:"dashboard-aqw",
-    title:"AQW Response Agent",
-    sub:"Live in DfC · Used daily",
-    text:"Before writing a single word, the agent checks 1,900 historic Assembly Written Questions for precedent. Consistent position confirmed, draft generated in first-person ministerial tone, governance check passed by Purview.",
+    title:"AQW Response Agent — live",
+    sub:"Priority agent · Launches directly",
+    text:"Let's run the AQW agent now. Q1891 asks about SWEP activation for rough sleepers. Step 1: question entered. Step 2: agent searches 1,900 historic questions — finds two precedents. Step 3: draft generated in NIHE ministerial format, 198 words. Step 4: Purview governance check passed. Ready to send for clearance.",
   },
   {
     screen:"dashboard-readiness",
-    title:"My Readiness — Insights and Training",
-    sub:"Viva Insights · Viva Learning",
-    text:"Every civil servant can see their AI proficiency score, time saved this week, and training progress — including EU AI Act Article 4 compliance tracked automatically through Viva Insights and Viva Learning.",
+    title:"My Readiness — Training and Skills",
+    sub:"Tab 3 · Left panel",
+    text:"The left panel shows Gareth's training — four modules with progress bars, due dates, and Resume buttons. Below that, Skill Progress across four areas: Prompting, Agent workflows, Data literacy, EU AI Act. At the bottom, three upcoming learning events — webinars, live sessions, and hands-on workshops. All clickable.",
+  },
+  {
+    screen:"dashboard-readiness",
+    title:"My Readiness — AI Insights and Quick Actions",
+    sub:"Tab 3 · Right panel",
+    text:"The right panel shows Gareth's AI proficiency score from Viva Insights — 91, Advanced — plus time saved, tasks completed with AI, and prompts this month. Below that, five Quick Actions: each one is clickable and flows directly to its agent or screen. AQW launches the agent modal. Civic Insight, Policy Researcher, and Business Case navigate to Work Items.",
   },
   {
     screen:"dashboard-companion",
     title:"DfC AI Companion",
-    sub:"Always available · Always contextual",
-    text:"The DfC AI Companion is available from every screen. Ask it what to prioritise, how to use an agent, or what the AQW precedent says. It knows the role, the department, and the tools. This is Compass.",
+    sub:"Available on every screen",
+    text:"The AI Companion is always there — top right of every screen. Ask What's in my email today and it scans the inbox via Microsoft Graph, surfaces the NIHE housing query, and offers to open the AQW agent directly. Ask Help me research housing policy and it walks through the Policy Researcher Agent step by step. This is Compass.",
   },
 ];
 
@@ -1792,8 +2046,10 @@ function Overview({ onContinue, onHome }) {
 }
 
 // ─── Tour panel ───────────────────────────────────────────────────────────────
-function TourPanel({ step, playing, onPlay, onPrev, onNext, onReset, onDismiss, speed, setSpeed }) {
-  const tour = TOUR_STEPS[step];
+function TourPanel({ step, override, playing, onPlay, onPrev, onNext, onReset, onDismiss, speed, setSpeed }) {
+  const scripted = TOUR_STEPS[step];
+  const tour = override || scripted;
+  const isOverride = !!override;
   const { out, done } = useTypewriter(tour.text, 22);
   const progress = ((step + 1) / TOUR_STEPS.length) * 100;
 
@@ -1832,6 +2088,15 @@ function TourPanel({ step, playing, onPlay, onPrev, onNext, onReset, onDismiss, 
             <span style={{fontSize:"12px",fontWeight:700,color:C.textDark}}>{tour.title}</span>
             <span style={{fontSize:"8px",background:C.pageBg,color:C.midGray,
               padding:"2px 8px",borderRadius:"10px",border:`1px solid ${C.border}`}}>{tour.sub}</span>
+            {isOverride&&(
+              <span style={{fontSize:"8px",background:"#ECFDF5",color:C.green,
+                padding:"2px 8px",borderRadius:"10px",fontWeight:700,
+                border:"1px solid #BBF7D0",display:"flex",alignItems:"center",gap:"3px"}}>
+                <span style={{width:"5px",height:"5px",borderRadius:"50%",background:C.green,
+                  animation:"tour-blink 1s ease infinite",display:"inline-block"}}/>
+                Following you
+              </span>
+            )}
           </div>
           <div style={{fontSize:"12px",color:"#4A5568",lineHeight:1.65,minHeight:"38px"}}>
             {out}
@@ -1901,18 +2166,66 @@ function TourPanel({ step, playing, onPlay, onPrev, onNext, onReset, onDismiss, 
 }
 
 // ─── App ──────────────────────────────────────────────────────────────────────
+
+// Dynamic narrator — reacts to whatever tab/action the user is on
+const TAB_NARRATOR = {
+  glance: {
+    title:"Today at a Glance",
+    sub:"Tab 1 · Tasks + Meetings",
+    text:"Your tasks are synced from Microsoft Planner and To Do on the left — urgent items surfaced first. Click the circle next to any task to mark it done. On the right, today's Teams meetings. Click any meeting row to expand it — completed meetings offer Generate Summary, upcoming ones show the agenda and Prepare for Meeting.",
+  },
+  work: {
+    title:"Work Items — AI Agents",
+    sub:"Tab 2 · Agent catalogue",
+    text:"Every AI agent configured for this role. Use the category pills at the top to filter by type. Click 'See flow ▶' on any card to walk through its step-by-step process. Click 'Launch →' to open the agent directly. The AQW Response Agent launches a full interactive flow.",
+  },
+  readiness: {
+    title:"My Readiness",
+    sub:"Tab 3 · Training, Skills and Insights",
+    text:"On the left — your training modules with progress bars and Resume buttons, skill scores across four areas, and upcoming learning events you can join directly. On the right — your AI Insights score from Viva Insights, usage metrics, and five Quick Actions that each launch their agent or screen directly.",
+  },
+};
+
 export default function App() {
-  const [view, setView]       = useState("landing");
-  const [dept, setDept]       = useState(null);
-  const [roleId, setRoleId]   = useState(null);
+  const [view, setView]           = useState("landing");
+  const [dept, setDept]           = useState(null);
+  const [roleId, setRoleId]       = useState(null);
+  const [activeTab, setActiveTab] = useState("glance");
   // Tour state
-  const [tourStep, setTourStep]   = useState(0);
-  const [tourOn, setTourOn]       = useState(true);
+  const [tourStep, setTourStep]       = useState(0);
+  const [tourOn, setTourOn]           = useState(true);
   const [tourPlaying, setTourPlaying] = useState(false);
-  const [tourSpeed, setTourSpeed] = useState(5);
+  const [tourSpeed, setTourSpeed]     = useState(5);
+  const [tourOverride, setTourOverride] = useState(null); // user-driven narrator override
   const tourTimer = useRef(null);
 
-  // Map tour step → which screen/action to show
+  // When user clicks a tab manually — update narrator to match
+  function handleTabChange(tabId) {
+    setActiveTab(tabId);
+    if (view === "dashboard") {
+      setTourOverride(TAB_NARRATOR[tabId] || null);
+    }
+  }
+
+  // Clear override when tour advances to a scripted step
+  function goTourStep(i) {
+    if (i < 0 || i >= TOUR_STEPS.length) return;
+    setTourStep(i);
+    setTourOverride(null); // back to scripted narration
+    const nav = TOUR_NAV[i];
+    if (!nav) return;
+    if (nav.view === "landing") { setView("landing"); }
+    else if (nav.view === "setup") { setView("setup"); }
+    else if (nav.view === "overview") { setView("overview"); }
+    else if (nav.view === "dashboard") {
+      if (!dept) setDept("dfc");
+      if (!roleId) setRoleId("policy");
+      setView("dashboard");
+      if (nav.tab) setActiveTab(nav.tab);
+    }
+  }
+
+  // Map tour step → which screen/tab to show
   const TOUR_NAV = [
     { view:"landing" },
     { view:"setup" },
@@ -1920,30 +2233,13 @@ export default function App() {
     { view:"overview" },
     { view:"dashboard", tab:"glance" },
     { view:"dashboard", tab:"glance" },
+    { view:"dashboard", tab:"glance" },
     { view:"dashboard", tab:"work" },
     { view:"dashboard", tab:"work" },
     { view:"dashboard", tab:"readiness" },
-    { view:"dashboard", tab:"glance", highlight:"companion" },
+    { view:"dashboard", tab:"readiness" },
+    { view:"dashboard", tab:"glance" },
   ];
-
-  // Advance tour — also navigate the real app
-  function goTourStep(i) {
-    if (i < 0 || i >= TOUR_STEPS.length) return;
-    setTourStep(i);
-    const nav = TOUR_NAV[i];
-    if (!nav) return;
-    if (nav.view === "landing") setView("landing");
-    else if (nav.view === "setup") setView("setup");
-    else if (nav.view === "overview") setView("overview");
-    else if (nav.view === "dashboard") {
-      if (view !== "dashboard") {
-        // Auto-select DfC + comms if not already set
-        if (!dept) setDept("dfc");
-        if (!roleId) setRoleId("comms");
-        setView("dashboard");
-      }
-    }
-  }
 
   // Auto-advance timer
   useEffect(() => {
@@ -1959,16 +2255,16 @@ export default function App() {
       }, tourSpeed * 1000);
     }
     return () => clearInterval(tourTimer.current);
-  }, [tourPlaying, tourSpeed, tourOn, view, dept, roleId]);
+  }, [tourPlaying, tourSpeed, tourOn]);
 
   function onDeptRole(d, r) {
     setDept(d); setRoleId(r);
     setView("overview");
-    // Advance tour to overview step if tour is active
     if (tourOn && tourStep <= 3) goTourStep(3);
   }
 
   function onOverviewContinue() {
+    setActiveTab("glance");
     setView("dashboard");
     if (tourOn) goTourStep(4);
   }
@@ -1976,11 +2272,13 @@ export default function App() {
   const tourPanel = tourOn ? (
     <TourPanel
       step={tourStep}
+      override={tourOverride}
       playing={tourPlaying}
       speed={tourSpeed}
       setSpeed={setTourSpeed}
       onPlay={() => {
         if (tourStep >= TOUR_STEPS.length - 1) goTourStep(0);
+        setTourOverride(null);
         setTourPlaying(p => !p);
       }}
       onPrev={() => { setTourPlaying(false); goTourStep(tourStep - 1); }}
@@ -2004,6 +2302,7 @@ export default function App() {
       <style>{`
         @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
         @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes slide-down{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
       `}</style>
       <Landing onStart={()=>{ setView("setup"); if(tourOn) goTourStep(1); }}/>
       {tourPanel}
@@ -2015,6 +2314,7 @@ export default function App() {
       <style>{`
         @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
         @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes slide-down{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
       `}</style>
       <DeptRoleSelect onComplete={onDeptRole} onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}/>
       {tourPanel}
@@ -2026,6 +2326,7 @@ export default function App() {
       <style>{`
         @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
         @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes slide-down{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
       `}</style>
       <Overview onContinue={onOverviewContinue} onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}/>
       {tourPanel}
@@ -2037,8 +2338,11 @@ export default function App() {
       <style>{`
         @keyframes tour-blink{0%,100%{opacity:1}50%{opacity:0}}
         @keyframes tour-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes slide-down{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
       `}</style>
-      <Dashboard roleId={roleId||"comms"} deptId={dept||"dfc"}
+      <Dashboard roleId={roleId||"policy"} deptId={dept||"dfc"}
+        activeTab={activeTab}
+        setActiveTab={handleTabChange}
         onHome={()=>{ setView("landing"); if(tourOn) goTourStep(0); }}
         onBack={()=>{ setView("setup"); if(tourOn) goTourStep(1); }}/>
       {tourPanel}
